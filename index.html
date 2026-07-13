@@ -1,0 +1,316 @@
+```html
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Kuiz Matematik</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    color:#5b2c83;
+}
+
+#timer{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    color:red;
+}
+
+.question{
+    margin:15px 0;
+    font-size:20px;
+}
+
+input{
+    width:100px;
+    padding:8px;
+    font-size:18px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    background:#5b2c83;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#3d1d5c;
+}
+
+#result{
+    margin-top:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.correct{
+    color:green;
+}
+
+.wrong{
+    color:red;
+}
+
+#review{
+    margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧮 Game Kuiz Matematik</h1>
+
+<div id="timer">05:00</div>
+
+<div id="quiz"></div>
+
+<button onclick="semak()">Hantar Jawapan</button>
+
+<div id="result"></div>
+
+<div id="review"></div>
+
+<button onclick="location.reload()">🔄 Main Semula</button>
+
+</div>
+
+
+<script>
+
+const jumlahSoalan=20;
+
+let jawapan=[];
+let soalan=[];
+let masa=300;
+let tamat=false;
+
+const quiz=document.getElementById("quiz");
+
+
+function binaSoalan(){
+
+for(let i=1;i<=jumlahSoalan;i++){
+
+let jenis=Math.floor(Math.random()*4);
+
+let a,b,jawab,ayat;
+
+
+if(jenis==0){
+
+a=random(100);
+b=random(100);
+
+ayat=`${a} + ${b}`;
+jawab=a+b;
+
+}
+
+else if(jenis==1){
+
+a=random(100);
+b=random(100);
+
+if(b>a){
+let t=a;
+a=b;
+b=t;
+}
+
+ayat=`${a} - ${b}`;
+jawab=a-b;
+
+}
+
+else if(jenis==2){
+
+a=random(12);
+b=random(12);
+
+ayat=`${a} × ${b}`;
+jawab=a*b;
+
+}
+
+else{
+
+b=random(12);
+jawab=random(12);
+a=b*jawab;
+
+ayat=`${a} ÷ ${b}`;
+
+}
+
+
+soalan.push(ayat);
+jawapan.push(jawab);
+
+
+quiz.innerHTML+=`
+
+<div class="question">
+${i}. ${ayat} =
+<input type="number" id="q${i}">
+</div>
+
+`;
+
+}
+
+}
+
+
+function random(max){
+return Math.floor(Math.random()*max)+1;
+}
+
+
+
+function semak(){
+
+if(tamat) return;
+
+tamat=true;
+
+clearInterval(masaTimer);
+
+
+let markah=0;
+
+let semakan="";
+
+
+for(let i=1;i<=jumlahSoalan;i++){
+
+let user=Number(document.getElementById("q"+i).value);
+
+
+if(user===jawapan[i-1]){
+
+markah++;
+
+semakan+=`
+<p class="correct">
+✅ ${i}. ${soalan[i-1]} = ${jawapan[i-1]}
+</p>`;
+
+}
+
+else{
+
+semakan+=`
+<p class="wrong">
+❌ ${i}. ${soalan[i-1]} = ${jawapan[i-1]}
+</p>`;
+
+}
+
+}
+
+
+let gred;
+
+
+if(markah>=18){
+gred="A 🏆 Cemerlang";
+}
+else if(markah>=15){
+gred="B ⭐ Sangat Baik";
+}
+else if(markah>=10){
+gred="C 👍 Baik";
+}
+else{
+gred="D 📚 Perlu Berlatih";
+}
+
+
+document.getElementById("result").innerHTML=
+`
+Markah: ${markah}/20<br>
+Gred: ${gred}
+`;
+
+
+document.getElementById("review").innerHTML=
+"<h3>Semakan Jawapan:</h3>"+semakan;
+
+
+}
+
+
+
+let masaBaki=300;
+
+
+let masaTimer=setInterval(function(){
+
+let minit=Math.floor(masaBaki/60);
+let saat=masaBaki%60;
+
+
+if(minit<10) minit="0"+minit;
+if(saat<10) saat="0"+saat;
+
+
+document.getElementById("timer").innerHTML=
+minit+":"+saat;
+
+
+masaBaki--;
+
+
+if(masaBaki<0){
+
+clearInterval(masaTimer);
+
+alert("⏰ Masa Tamat!");
+
+semak();
+
+}
+
+
+},1000);
+
+
+
+binaSoalan();
+
+
+</script>
+
+</body>
+</html>
+```
