@@ -1,15 +1,15 @@
-```Faiz
+By Faiz
 <!DOCTYPE html>
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Kuiz Matematik</title>
+<title>Kuiz Matematik Faiz</title>
 
 <style>
 body{
     font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#667eea,#764ba2);
+    background:linear-gradient(135deg,#a16dd1,#b08ad6);
     margin:0;
     padding:20px;
 }
@@ -17,10 +17,10 @@ body{
 .container{
     max-width:700px;
     margin:auto;
-    background:white;
+    background:rgb(241, 159, 159);
     padding:25px;
     border-radius:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    box-shadow:0 10px 25px rgba(236, 234, 234, 0.3);
 }
 
 h1{
@@ -98,19 +98,19 @@ button:hover{
 
 <div class="container">
 
-<h1>🧮 Game Kuiz Matematik</h1>
+<h1>🧮Kuiz Matematik Faiz</h1>
 
 <div id="timer">05:00</div>
 
 <div id="quiz"></div>
 
-<button onclick="semak()">Hantar Jawapan</button>
+<button onclick="semak()">Hantar Jing</button>
 
 <div id="result"></div>
 
 <div id="review"></div>
 
-<button onclick="location.reload()">🔄 Main Semula</button>
+<button onclick="location.reload()">🔄 Main Semula Noob</button>
 
 </div>
 
@@ -121,7 +121,7 @@ const jumlahSoalan=20;
 
 let jawapan=[];
 let soalan=[];
-let masa=300;
+let masa=180;
 let tamat=false;
 
 const quiz=document.getElementById("quiz");
@@ -253,16 +253,16 @@ let gred;
 
 
 if(markah>=18){
-gred="A 🏆 Cemerlang";
+gred="A 🏆 GG sapat 10 sen";
 }
 else if(markah>=15){
-gred="B ⭐ Sangat Baik";
+gred="B ⭐ pandai juga";
 }
 else if(markah>=10){
-gred="C 👍 Baik";
+gred="C 👍 Ok la";
 }
 else{
-gred="D 📚 Perlu Berlatih";
+gred="D 📚 Goblok";
 }
 
 
@@ -305,7 +305,7 @@ if(masaBaki<0){
 
 clearInterval(masaTimer);
 
-alert("⏰ Masa Tamat!");
+alert("⏰ Lama Jir!");
 
 semak();
 
@@ -323,4 +323,4 @@ binaSoalan();
 
 </body>
 </html>
-```
+By Faiz
